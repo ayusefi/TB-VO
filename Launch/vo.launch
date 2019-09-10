@@ -1,0 +1,22 @@
+<launch>
+  
+  <!-- launch basic turtlebot software -->
+  <include file="$(find turtlebot_bringup)/launch/minimal.launch"/>
+  <!-- gazebo'yu baslat -->
+  <!-- include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch"/-->
+  
+  <!-- launch 3d sensor -->
+  <include file="$(find turtlebot_bringup)/launch/3dsensor.launch">
+    <arg name="rgb_processing" value="true"/>
+    <arg name="ir_processing" value="false"/>
+    <arg name="depth_processing" value="false"/>
+    <arg name="depth_registered_processing" value="false"/>
+    <arg name="disparity_processing" value="false"/>
+    <arg name="disparity_registered_processing" value="false"/>
+    <arg name="scan_processing" value="false"/>
+  </include>
+
+  <node name="TrtlbtVO" pkg="turtlebot_vo" type="visual_odometry.py" output="screen"/>
+
+
+</launch>
